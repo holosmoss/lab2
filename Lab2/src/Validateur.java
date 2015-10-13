@@ -6,6 +6,9 @@ public class Validateur {
 		this.model = m;
 	}
 
+	protected int[][] getModel(){
+		return model;
+	}
 	protected int getValue(int row, int col){
 		return model[row][col];
 	}

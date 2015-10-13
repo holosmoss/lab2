@@ -11,23 +11,26 @@ public class Solveur implements Runnable {
 	/** This method is called by the browser to start the applet */
 	   public void start()
 	   {
+//		   TODO throw les exceptions jusquau main
 	      // This statement will start the method 'run' to in a new thread
 	      (new Thread(this)).start() ;
 	   }
 
 	   /** The active part begins here */
+
 	   public void run()
 	   {
 	      try
 	      {
 	         // Let the observers see the initial position
 	         //Thread.sleep( 1000 ) ;
-
+	    	 
 	         // Start to solve the puzzle in the left upper corner
 	         solve( 0, 0 ) ;
 	      }
 	      catch( Exception e )
 	      {
+	    	  System.out.println("WUZZAH");
 	      }
 	   }
 
@@ -39,13 +42,14 @@ public class Solveur implements Runnable {
 	         throw new Exception( "Solution found" ) ;
 
 	      // If the cell is not empty, continue with the next cell
-	      if( valid.getValue(row,col) != 0 )
-	         next( row, col ) ;
-	      else
-	      {
+	      if( valid.getValue(row,col) != 0 ){
+	         next( row, col );
+	      }else{
 	         // Find a valid number for the empty cell
 	         for( int num = 1; num < 10; num++ )
 	         {
+		    	//System.out.println("num:"+num+" row:"+row+" col:"+col);
+		    	//System.out.println("checkRow: "+valid.checkRow(row,num)+" checkCol: "+valid.checkCol(col,num)+" checkBox: "+valid.checkBox(row,col,num));
 	            if( valid.checkRow(row,num) && valid.checkCol(col,num) && valid.checkBox(row,col,num) )
 	            {
 	            	valid.setValue(row,col,num);
