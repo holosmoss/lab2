@@ -2,6 +2,9 @@
 public class Solveur implements Runnable {
 
 	private Validateur valid;
+	private long startTime;
+	private String time;
+	
 	public Solveur(Validateur v) {
 		//
 		this.valid = v;
@@ -11,7 +14,7 @@ public class Solveur implements Runnable {
 	/** This method is called by the browser to start the applet */
 	   public void start() 
 	   {
-
+		   
 	      // This statement will start the method 'run' to in a new thread
 	      (new Thread(this)).start() ;
 	   }
@@ -26,12 +29,19 @@ public class Solveur implements Runnable {
 	         //Thread.sleep( 1000 ) ;
 	    	 
 	         // Start to solve the puzzle in the left upper corner
+	    	 startTime = System.nanoTime();
 	         solve( 0, 0 ) ;
 	      }
 	      catch( Exception e )
 	      {
-	    	  System.out.println("WUZZAH");
+
+			  time = String.valueOf( (System.nanoTime() - startTime) );			
+			  
+	    	  System.out.println("=== Done ===");	    	  
 	    	  valid.affichageGrille();
+	    	  
+	    	  System.out.println("temps1= "+ time + "ns" );
+	    	  
 	      }
 	   }
 
@@ -78,4 +88,5 @@ public class Solveur implements Runnable {
 	      else
 	         solve( row + 1, 0 ) ;
 	   }
+
 }
