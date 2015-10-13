@@ -9,7 +9,7 @@ public class Solveur implements Runnable {
 	//http://www.heimetli.ch/ffh/simplifiedsudoku.html
 	
 	/** This method is called by the browser to start the applet */
-	   public void start()
+	   public void start() 
 	   {
 //		   TODO throw les exceptions jusquau main
 	      // This statement will start the method 'run' to in a new thread
