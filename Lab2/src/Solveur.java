@@ -6,6 +6,8 @@ public class Solveur implements Runnable {
 		//
 		this.valid = v;
 	}
+	//http://www.heimetli.ch/ffh/simplifiedsudoku.html
+	
 	/** This method is called by the browser to start the applet */
 	   public void start()
 	   {
