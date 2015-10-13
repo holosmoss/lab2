@@ -27,7 +27,9 @@ public class Main {
 		Solveur tada = new Solveur(bob);
 		sudo.affichageGrille(grille);
 		tada.start();
-		//TODO afficher la grille une fois que le run est fini
+		//TODO est-ce que le thread est utile. Tester une version purement recursive pour comparer les vitesses.
+		//TODO throw les exceptions jusquau main
+			//TODO afficher la grille une fois que le run est fini (sans passer par le solveur)
 		//sudo.affichageGrille(bob.getModel());
 
 	}
