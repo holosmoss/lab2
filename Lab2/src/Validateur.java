@@ -48,7 +48,20 @@ public class Validateur {
 		
 		return true ;
 	}
-	   
+	 
+	/**
+	 * affiche la grille de sudoku
+	 * @param grille
+	 */
+	public void affichageGrille(){
+		
+		for (int row = 0; row < 9; row++) 
+		{
+			for (int col = 0; col < 9; col++)
+				System.out.print(model[row][col]);
+				System.out.println();
+		}
+	}
 	   
 	
 }

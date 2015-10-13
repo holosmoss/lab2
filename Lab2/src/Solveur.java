@@ -31,6 +31,7 @@ public class Solveur implements Runnable {
 	      catch( Exception e )
 	      {
 	    	  System.out.println("WUZZAH");
+	    	  valid.affichageGrille();
 	      }
 	   }
 
