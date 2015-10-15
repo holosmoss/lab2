@@ -29,7 +29,7 @@ public class Main {
 		Validateur bob = new Validateur(grille);
 		Solveur tada = new Solveur(bob);
 		sudo.affichageGrille(grille);
-		//tada.start();
+		
 		try {
 			
 			startTime = System.nanoTime();
