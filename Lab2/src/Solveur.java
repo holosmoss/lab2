@@ -1,9 +1,8 @@
 
-public class Solveur implements Runnable {
+public class Solveur {
 
 	private Validateur valid;
-	private long startTime;
-	private String time;
+
 	
 	public Solveur(Validateur v) {
 		//
@@ -11,39 +10,9 @@ public class Solveur implements Runnable {
 	}
 	//http://www.heimetli.ch/ffh/simplifiedsudoku.html
 	
-	/** This method is called by the browser to start the applet */
-	   public void start() 
-	   {
-		   
-	      // This statement will start the method 'run' to in a new thread
-	      (new Thread(this)).start() ;
-	   }
-
-	   /** The active part begins here */
-
-	   public void run()
-	   {
-	      try
-	      {
-	         // Let the observers see the initial position
-	         //Thread.sleep( 1000 ) ;
-	    	 
-	         // Start to solve the puzzle in the left upper corner
-	    	 startTime = System.nanoTime();
-	         solve( 0, 0 ) ;
-	      }
-	      catch( Exception e )
-	      {
-
-			  time = String.valueOf( (System.nanoTime() - startTime) );			
-			  
-	    	  System.out.println("=== Done ===");	    	  
-	    	  valid.affichageGrille();
-	    	  
-	    	  System.out.println("temps1= "+ time + "ns" );
-	    	  
-	      }
-	   }
+	public Validateur getValid() {
+		return valid;
+	}
 
 	   /** Recursive function to find a valid number for one single cell */
 	   public void solve( int row, int col ) throws Exception
@@ -55,7 +24,9 @@ public class Solveur implements Runnable {
 	      // If the cell is not empty, continue with the next cell
 	      if( valid.getValue(row,col) != 0 ){
 	         next( row, col );
+	         
 	      }else{
+	    	  
 	         // Find a valid number for the empty cell
 	         for( int num = 1; num < 10; num++ )
 	         {
@@ -64,11 +35,7 @@ public class Solveur implements Runnable {
 	            if( valid.checkRow(row,num) && valid.checkCol(col,num) && valid.checkBox(row,col,num) )
 	            {
 	            	valid.setValue(row,col,num);
-	               //updateView() ;
-
-	               // Let the observer see it
-	               //Thread.sleep( 1000 ) ;
-
+	            	
 	               // Delegate work on the next cell to a recursive call
 	               next( row, col ) ;
 	            }
@@ -76,7 +43,7 @@ public class Solveur implements Runnable {
 
 	         // No valid number was found, clean up and return to caller
 	         valid.setValue(row,col,0);
-	         //updateView() ;
+
 	      }
 	   }
 

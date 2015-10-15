@@ -3,6 +3,9 @@
 public class Main {
 	
 	public static void main(String[] args) {
+		
+		long startTime = 0;
+		String time = "";
 
 		//grille de test
 		
@@ -26,7 +29,21 @@ public class Main {
 		Validateur bob = new Validateur(grille);
 		Solveur tada = new Solveur(bob);
 		sudo.affichageGrille(grille);
-		tada.start();
+		//tada.start();
+		try {
+			
+			startTime = System.nanoTime();
+			tada.solve(0, 0);
+			
+		} catch (Exception e) {
+			
+			  time = String.valueOf( (System.nanoTime() - startTime) );			
+			  
+	    	  System.out.println("=== Done ===");	    	  
+	    	  tada.getValid().affichageGrille();
+	    	  
+	    	  System.out.println("temps1= "+ time + "ns" );
+		}
 		//TODO est-ce que le thread est utile. Tester une version purement recursive pour comparer les vitesses.
 		//TODO throw les exceptions jusquau main
 			//TODO afficher la grille une fois que le run est fini (sans passer par le solveur)
