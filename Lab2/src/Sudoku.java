@@ -76,9 +76,18 @@ public class Sudoku {
 		
 		for (int row = 0; row < TAILLE_GRILLE; row++) 
 		{
-			for (int col = 0; col < TAILLE_GRILLE; col++)
+			if(row%3 == 0)
+				System.out.println("-------------");
+			
+			for (int col = 0; col < TAILLE_GRILLE; col++){
+				if(col%3 == 0)
+					System.out.print("|");
 				System.out.print(grille[row][col]);
-				System.out.println();
+				
+			}
+			System.out.print("|");
+			System.out.println();
 		}
+		System.out.println("-------------");
 	}
 }
