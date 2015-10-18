@@ -35,13 +35,16 @@ public class Main {
 			startTime = System.nanoTime();
 			tada.solve(0, 0);
 			
+			System.out.println("Aucune solution possible");
+			time = String.valueOf( (System.nanoTime() - startTime) );
+			System.out.println("temps1= "+ time + "ns" );
+			
 		} catch (Exception e) {
 			
 			  time = String.valueOf( (System.nanoTime() - startTime) );			
 			  
 	    	  System.out.println("=== Done ===");	    	  
-	    	  tada.getValid().affichageGrille();
-	    	  
+	    	  tada.getValid().affichageGrille();	    	  
 	    	  System.out.println("temps1= "+ time + "ns" );
 		}
 		//TODO est-ce que le thread est utile. Tester une version purement recursive pour comparer les vitesses.
