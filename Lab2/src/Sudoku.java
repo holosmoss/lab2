@@ -35,7 +35,6 @@ public class Sudoku {
 		}
 		
 		String grille = new String(b, StandardCharsets.UTF_8 );		
-		//System.out.println( grille );
 		
 		//supprime les sauts de ligne de la string si jamais il y'en avait
 		grille = grille.replaceAll("\\r\\n", "");

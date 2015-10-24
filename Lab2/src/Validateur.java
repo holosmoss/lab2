@@ -15,41 +15,43 @@ public class Validateur {
 	protected void setValue(int row, int col, int val){
 		model[row][col] = val;
 	}
-
-	/** Checks if num is an acceptable value for the given row */
-	protected boolean checkRow( int row, int num ){
-	  for( int col = 0; col < 9; col++ )
-	     if( model[row][col] == num )
-	        return false ;
+	protected boolean isValid(int row, int col, int val){
+		//validons la row en premier
+		for(int coli = 0; coli < 9 ; coli++){
+			//pour la row donnee on verifie tout les cols pour un doublon de la val
+			if(model[row][coli] == val){
+				//on peut pas ajouter la valeur ell est deja dans la row
+				return false;
+			}
+		}
+		//validons la col maintenant
+		for(int rowi = 0; rowi<9; rowi++){
+			//pour la col donee on verifie qu<aucune de ses row n'a la valeur
+			if(model[rowi][col] == val){
+				//valeur non valide pour la col
+				return false;
+			}
+		}
+		//finalement validons la boite 3x3
+		//pour nos cel/row donnee trouver le début de leurs boites
+		row = (row/3)*3;
+		col = (col/3)*3;
+		for(int r=0; r<3;r++){
+			for(int c=0;c<3;c++){
+				//on passe toute les cell de toute les row dans la boite 3x3 de notre validation
+				if(model[row+r][col+c] == val){
+					//la valeur existe deja dans notre boite donc pas valide
+					return false;
+				}
+			}
+		}
+		//la valeur est valide
+		return true;
+	}
 	
-	  return true ;
-	}
-   
-	/** Checks if num is an acceptable value for the given column */
-	protected boolean checkCol( int col, int num ){
-	  for( int row = 0; row < 9; row++ )
-	     if( model[row][col] == num )
-	        return false ;
-	
-	  return true ;
-	}
-   
-	/** Checks if num is an acceptable value for the box around row and col */
-	protected boolean checkBox( int row, int col, int num ){
-		
-		//pour notre cellule trouver le début de son block
-		row = (row / 3) * 3 ;
-		col = (col / 3) * 3 ;
-		//Verifier que le block ne contient pas notre num
-		for( int r = 0; r < 3; r++ )
-			for( int c = 0; c < 3; c++ )
-				if( model[row+r][col+c] == num )
-					return false ;
-		
-		return true ;
-	}
 	 
 	/**
+	 * Parceque lazyness voici un merveilleu doublon
 	 * affiche la grille de sudoku
 	 * @param grille
 	 */
